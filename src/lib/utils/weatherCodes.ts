@@ -1,0 +1,39 @@
+export interface WeatherInfo {
+	description: string;
+	icon: string;
+}
+
+export const weatherCodes: Record<number, WeatherInfo> = {
+	0: { description: 'Clear sky', icon: 'sun' },
+	1: { description: 'Mainly clear', icon: 'sun' },
+	2: { description: 'Partly cloudy', icon: 'cloud-sun' },
+	3: { description: 'Overcast', icon: 'cloud' },
+	45: { description: 'Foggy', icon: 'fog' },
+	48: { description: 'Depositing rime fog', icon: 'fog' },
+	51: { description: 'Light drizzle', icon: 'cloud-drizzle' },
+	53: { description: 'Moderate drizzle', icon: 'cloud-drizzle' },
+	55: { description: 'Dense drizzle', icon: 'cloud-drizzle' },
+	56: { description: 'Light freezing drizzle', icon: 'cloud-drizzle' },
+	57: { description: 'Dense freezing drizzle', icon: 'cloud-drizzle' },
+	61: { description: 'Slight rain', icon: 'cloud-rain' },
+	63: { description: 'Moderate rain', icon: 'cloud-rain' },
+	65: { description: 'Heavy rain', icon: 'cloud-rain' },
+	66: { description: 'Light freezing rain', icon: 'cloud-rain' },
+	67: { description: 'Heavy freezing rain', icon: 'cloud-rain' },
+	71: { description: 'Slight snow fall', icon: 'cloud-snow' },
+	73: { description: 'Moderate snow fall', icon: 'cloud-snow' },
+	75: { description: 'Heavy snow fall', icon: 'cloud-snow' },
+	77: { description: 'Snow grains', icon: 'cloud-snow' },
+	80: { description: 'Slight rain showers', icon: 'cloud-rain' },
+	81: { description: 'Moderate rain showers', icon: 'cloud-rain' },
+	82: { description: 'Violent rain showers', icon: 'cloud-rain' },
+	85: { description: 'Slight snow showers', icon: 'cloud-snow' },
+	86: { description: 'Heavy snow showers', icon: 'cloud-snow' },
+	95: { description: 'Thunderstorm', icon: 'cloud-lightning' },
+	96: { description: 'Thunderstorm with slight hail', icon: 'cloud-lightning' },
+	99: { description: 'Thunderstorm with heavy hail', icon: 'cloud-lightning' }
+};
+
+export function getWeatherInfo(code: number): WeatherInfo {
+	return weatherCodes[code] || { description: 'Unknown', icon: 'help-circle' };
+}
