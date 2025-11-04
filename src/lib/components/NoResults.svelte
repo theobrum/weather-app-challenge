@@ -1,11 +1,11 @@
 <script lang="ts">
-	export let query: string = '';
+	let { query = '' }: { query?: string } = $props();
 </script>
 
-<div class="flex flex-col items-center justify-center py-20 px-4">
-	<h2 class="text-2xl font-bold mb-2">No search result found!</h2>
+<div class="flex flex-col items-center justify-center px-4 py-20">
+	<h2 class="mb-2 text-2xl font-bold">No search result found!</h2>
 	{#if query}
-		<p class="text-neutral-300 text-center">
+		<p class="text-center text-neutral-300">
 			We couldn't find any results for <span class="font-semibold">"{query}"</span>
 		</p>
 	{/if}

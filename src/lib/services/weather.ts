@@ -1,4 +1,10 @@
-import type { WeatherData, CurrentWeather, DailyForecast, HourlyForecast, Location } from '$lib/types/weather';
+import type {
+	WeatherData,
+	CurrentWeather,
+	DailyForecast,
+	HourlyForecast,
+	Location
+} from '$lib/types/weather';
 
 const WEATHER_API = 'https://api.open-meteo.com/v1/forecast';
 
@@ -10,7 +16,10 @@ interface WeatherParams {
 	precipitationUnit?: 'mm' | 'inch';
 }
 
-export async function getWeatherData(params: WeatherParams, location: Location): Promise<WeatherData> {
+export async function getWeatherData(
+	params: WeatherParams,
+	location: Location
+): Promise<WeatherData> {
 	const urlParams = new URLSearchParams({
 		latitude: params.latitude.toString(),
 		longitude: params.longitude.toString(),
@@ -30,12 +39,9 @@ export async function getWeatherData(params: WeatherParams, location: Location):
 			'wind_speed_10m',
 			'relative_humidity_2m'
 		].join(','),
-		daily: [
-			'weather_code',
-			'temperature_2m_max',
-			'temperature_2m_min',
-			'precipitation_sum'
-		].join(','),
+		daily: ['weather_code', 'temperature_2m_max', 'temperature_2m_min', 'precipitation_sum'].join(
+			','
+		),
 		temperature_unit: params.temperatureUnit || 'celsius',
 		wind_speed_unit: params.windSpeedUnit || 'kmh',
 		precipitation_unit: params.precipitationUnit || 'mm',
