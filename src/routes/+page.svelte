@@ -1,5 +1,8 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
+	import { goto } from '$app/navigation';
+	import { page } from '$app/stores';
+	import { browser } from '$app/environment';
 	import { createQuery } from '@tanstack/svelte-query';
 	import Header from '$lib/components/Header.svelte';
 	import SearchBar from '$lib/components/SearchBar.svelte';
@@ -22,10 +25,66 @@
 	});
 	let selectedLocation = $state<{ lat: number; lon: number; name: string } | null>(null);
 	let isGettingLocation = $state(false);
-	let geolocationError = $state(false);
+	let hasLoadedFromUrl = $state(false);
+	
+	function loadStateFromUrl() {
+		if (!browser) return;
+		
+		const params = $page.url.searchParams;
+		
+		const temp = params.get('temp') as 'celsius' | 'fahrenheit' | null;
+		const wind = params.get('wind') as 'kmh' | 'mph' | null;
+		const precip = params.get('precip') as 'mm' | 'inch' | null;
+		
+		if (temp || wind || precip) {
+			units = {
+				temperature: temp || 'celsius',
+				windSpeed: wind || 'kmh',
+				precipitation: precip || 'mm'
+			};
+		}
+		
+		const lat = params.get('lat');
+		const lon = params.get('lon');
+		const name = params.get('name');
+		
+		if (lat && lon) {
+			selectedLocation = {
+				lat: parseFloat(lat),
+				lon: parseFloat(lon),
+				name: name || 'Selected Location'
+			};
+		}
+		
+		hasLoadedFromUrl = true;
+	}
+	
+	function updateUrl() {
+		if (!browser) return;
+		
+		const url = new URL(window.location.href);
+		
+		url.searchParams.set('temp', units.temperature);
+		url.searchParams.set('wind', units.windSpeed);
+		url.searchParams.set('precip', units.precipitation);
+		
+		if (selectedLocation) {
+			url.searchParams.set('lat', selectedLocation.lat.toString());
+			url.searchParams.set('lon', selectedLocation.lon.toString());
+			url.searchParams.set('name', selectedLocation.name);
+		} else {
+			url.searchParams.delete('lat');
+			url.searchParams.delete('lon');
+			url.searchParams.delete('name');
+		}
+		
+		goto(url.toString(), { replaceState: true, noScroll: true, keepFocus: true });
+	}
 	
 	onMount(() => {
-		if (navigator.geolocation) {
+		loadStateFromUrl();
+		
+		if (!selectedLocation && navigator.geolocation) {
 			isGettingLocation = true;
 			navigator.geolocation.getCurrentPosition(
 				(position) => {
@@ -35,12 +94,18 @@
 						name: 'Your Location'
 					};
 					isGettingLocation = false;
+					updateUrl();
 				},
 				(error) => {
 					isGettingLocation = false;
-					geolocationError = true;
 				}
 			);
+		}
+	});
+	
+	$effect(() => {
+		if (hasLoadedFromUrl && (selectedLocation || units)) {
+			updateUrl();
 		}
 	});
 	
