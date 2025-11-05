@@ -1,45 +1,54 @@
 <script lang="ts">
 	import iconSearch from '$lib/assets/images/icon-search.svg';
-
-	let {
+	
+	let { 
 		value = $bindable(''),
 		placeholder = 'Search for a place...',
 		onSearch
-	}: {
+	}: { 
 		value?: string;
 		placeholder?: string;
 		onSearch: (query: string) => void;
 	} = $props();
-
+	
 	function handleSubmit(e: SubmitEvent) {
 		e.preventDefault();
 		if (value.trim()) {
 			onSearch(value.trim());
 		}
 	}
+	
+	function handleInput(e: Event) {
+		const target = e.target as HTMLInputElement;
+		value = target.value;
+		onSearch(target.value);
+	}
 </script>
 
-<form onsubmit={handleSubmit} class="flex w-full max-w-2xl gap-4">
+<form onsubmit={handleSubmit} class="flex gap-4 w-full max-w-2xl">
 	<div class="relative flex-1">
-		<img
-			src={iconSearch}
-			alt=""
-			class="absolute top-1/2 left-4 h-5 w-5 -translate-y-1/2 text-neutral-300"
+		<img 
+			src={iconSearch} 
+			alt="" 
+			class="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-neutral-300"
 		/>
 		<input
 			type="text"
-			bind:value
+			id="location-search"
+			name="location"
+			{value}
 			{placeholder}
-			class="w-full rounded-lg bg-neutral-700 py-3.5 pr-4 pl-12 text-neutral-0
-				   transition-all placeholder:text-neutral-300 focus:ring-2 focus:ring-blue-500
-				   focus:outline-none"
+			oninput={handleInput}
+			class="w-full bg-neutral-700 text-neutral-0 pl-12 pr-4 py-3.5 rounded-lg 
+				   focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all
+				   placeholder:text-neutral-300"
 		/>
 	</div>
-
+	
 	<button
 		type="submit"
-		class="rounded-lg bg-blue-500 px-8 py-3.5 font-medium transition-colors
-			   hover:bg-blue-600 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-neutral-900 focus:outline-none"
+		class="px-8 py-3.5 bg-blue-500 hover:bg-blue-600 rounded-lg font-medium 
+			   transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-neutral-900"
 	>
 		Search
 	</button>
