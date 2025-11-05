@@ -16,6 +16,7 @@
 	import { searchLocations } from '$lib/services/geocoding';
 	import { getWeatherData } from '$lib/services/weather';
 	import type { UnitSettings } from '$lib/types/weather';
+	import { debounce } from '$lib/utils/debounce';
 	
 	let searchQuery = $state('');
 	let units = $state<UnitSettings>({
@@ -140,9 +141,13 @@
 		},
 		enabled: selectedLocation !== null
 	}));
-	
-	function handleSearch(query: string) {
+
+	const debouncedSearch = debounce((query: string) => {
 		searchQuery = query;
+	}, 300);
+
+	function handleSearch(query: string) {
+		debouncedSearch(query);
 	}
 	
 	function handleLocationSelect(location: any) {
