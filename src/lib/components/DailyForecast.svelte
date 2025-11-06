@@ -41,14 +41,14 @@
 <div>
 	<h3 class="text-xl font-semibold mb-4">Daily forecast</h3>
 	
-	<div class="grid grid-cols-2 md:grid-cols-7 gap-4">
+	<div class="grid grid-cols-3 md:grid-cols-7 gap-4">
 		{#each days as day}
 			<div class="bg-neutral-700 rounded-xl p-4 flex flex-col items-center">
 				<p class="font-medium mb-3">{day.day}</p>
 				<img src={day.icon} alt="" class="w-12 h-12 mb-3" />
-				<div class="flex items-center gap-2 text-sm">
+				<div class="flex items-center justify-between w-full gap-2 text-sm">
 					<span class="font-semibold">{day.tempMax}°</span>
-					<span class="text-neutral-300">{day.tempMin}°</span>
+					<span class="text-neutral-300 text-right">{day.tempMin}°</span>
 				</div>
 			</div>
 		{/each}

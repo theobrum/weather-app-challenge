@@ -97,7 +97,7 @@
 
 <svelte:window onclick={handleWindowClick} />
 
-<div class="bg-neutral-800 rounded-xl p-6">
+<div class="bg-neutral-800 rounded-xl p-6 flex flex-col h-full">
 	<div class="flex items-center justify-between mb-6">
 		<h3 class="text-xl font-semibold">Hourly forecast</h3>
 		
@@ -133,12 +133,12 @@
 		</div>
 	</div>
 	
-	<div class="space-y-3 max-h-[600px] overflow-y-auto">
+	<div class="flex-1 overflow-y-auto space-y-3">
 		{#each selectedDayHours as hour}
-			<div class="flex items-center justify-between py-3 px-4 bg-neutral-700 rounded-lg">
-				<span class="text-neutral-300 w-16">{hour.time}</span>
-				<img src={hour.icon} alt="" class="w-10 h-10" />
-				<span class="font-semibold text-lg w-16 text-right">{hour.temp}°</span>
+			<div class="flex items-center gap-4 py-3 px-4 bg-neutral-700 rounded-lg">
+				<img src={hour.icon} alt="" class="w-10 h-10 shrink-0" />
+				<span class="text-neutral-300 flex-1">{hour.time}</span>
+				<span class="font-semibold text-lg">{hour.temp}°</span>
 			</div>
 		{/each}
 	</div>

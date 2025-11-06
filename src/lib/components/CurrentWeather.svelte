@@ -1,7 +1,6 @@
 <script lang="ts">
 	import type { CurrentWeather as CurrentWeatherType, Location } from '$lib/types/weather';
 	import { formatDate } from '$lib/utils/formatters';
-	import { getWeatherInfo } from '$lib/utils/weatherCodes';
 	import iconSunny from '$lib/assets/images/icon-sunny.webp';
 	import iconPartlyCloudy from '$lib/assets/images/icon-partly-cloudy.webp';
 	import iconOvercast from '$lib/assets/images/icon-overcast.webp';
@@ -40,7 +39,7 @@
 </script>
 
 <div 
-	class="relative overflow-hidden rounded-2xl p-8 text-white"
+	class="relative overflow-hidden rounded-2xl p-6 sm:p-8 text-white"
 	style="background: linear-gradient(135deg, hsl(233, 67%, 56%) 0%, hsl(248, 70%, 36%) 100%);"
 >
 	<img 
@@ -50,15 +49,15 @@
 	/>
 	
 	<div class="relative z-10">
-		<h2 class="text-2xl font-semibold mb-1">
+		<h2 class="text-xl sm:text-2xl font-semibold mb-1">
 			{location.name}, {location.country}
 		</h2>
-		<p class="text-neutral-200 mb-8">{formattedDate}</p>
+		<p class="text-neutral-200 mb-6 sm:mb-8">{formattedDate}</p>
 		
 		<div class="flex items-center justify-between">
-			<div class="flex items-center gap-6">
-				<img src={weatherIcon} alt="" class="w-24 h-24" />
-				<div class="text-8xl font-display font-bold">
+			<div class="flex items-center gap-4 sm:gap-6">
+				<img src={weatherIcon} alt="" class="w-20 sm:w-24 h-20 sm:h-24" />
+				<div class="text-6xl sm:text-8xl font-display font-bold">
 					{Math.round(current.temperature)}{tempSymbol}
 				</div>
 			</div>

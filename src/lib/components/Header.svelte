@@ -16,10 +16,12 @@
 	} = $props();
 </script>
 
-<header class="flex items-center justify-between py-6 px-8">
-	<div class="flex items-center gap-3">
-		<img src={logo} alt="Weather Now" class="w-28 h-28" />
+<header class="max-w-7xl mx-auto px-8 py-6">
+	<div class="flex items-center justify-between">
+		<div class="flex items-center gap-3">
+			<img src={logo} alt="Weather Now" class="w-10 h-10" />
+		</div>
+		
+		<UnitsDropdown bind:units onChange={onUnitsChange} />
 	</div>
-	
-	<UnitsDropdown bind:units onChange={onUnitsChange} />
 </header>

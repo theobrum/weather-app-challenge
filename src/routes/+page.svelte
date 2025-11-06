@@ -221,7 +221,7 @@
 					<DailyForecast daily={weatherQuery.data.daily} />
 				</div>
 				
-				<div class="lg:col-span-1">
+				<div class="lg:col-span-1 flex">
 					<HourlyForecast hourly={weatherQuery.data.hourly} />
 				</div>
 			</div>

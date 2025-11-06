@@ -25,7 +25,7 @@
 	}
 </script>
 
-<form onsubmit={handleSubmit} class="flex gap-4 w-full max-w-2xl">
+<form onsubmit={handleSubmit} class="flex flex-col sm:flex-row gap-4 w-full max-w-2xl">
 	<div class="relative flex-1">
 		<img 
 			src={iconSearch} 
@@ -47,7 +47,7 @@
 	
 	<button
 		type="submit"
-		class="px-8 py-3.5 bg-blue-500 hover:bg-blue-600 rounded-lg font-medium 
+		class="w-full sm:w-auto px-8 py-3.5 bg-blue-500 hover:bg-blue-600 rounded-lg font-medium 
 			   transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-neutral-900"
 	>
 		Search
