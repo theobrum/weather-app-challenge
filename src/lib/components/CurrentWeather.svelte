@@ -49,12 +49,14 @@
 	/>
 	
 	<div class="relative z-10">
-		<h2 class="text-xl sm:text-2xl font-semibold mb-1">
+		<!-- Texto (siempre arriba) -->
+		<h2 class="text-xl sm:text-2xl font-semibold mb-1 text-center sm:text-left">
 			{location.name}, {location.country}
 		</h2>
-		<p class="text-neutral-200 mb-6 sm:mb-8">{formattedDate}</p>
+		<p class="text-neutral-200 mb-6 sm:mb-8 text-center sm:text-left">{formattedDate}</p>
 		
-		<div class="flex items-center justify-between">
+		<!-- Icono + Temperatura (centrados en mobile, izquierda en desktop) -->
+		<div class="flex justify-center sm:justify-start">
 			<div class="flex items-center gap-4 sm:gap-6">
 				<img src={weatherIcon} alt="" class="w-20 sm:w-24 h-20 sm:h-24" />
 				<div class="text-6xl sm:text-8xl font-display font-bold">

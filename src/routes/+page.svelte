@@ -167,9 +167,9 @@
 <div class="min-h-screen">
 	<Header bind:units onUnitsChange={handleUnitsChange} />
 	
-	<main class="max-w-7xl mx-auto px-8 py-6">
-		<div class="text-center mb-12">
-			<h2 class="text-5xl font-display font-bold mb-6">
+	<main class="max-w-7xl mx-auto px-4 sm:px-1 pt-1 sm:pt-4 pb-12 sm:pb-16">
+		<div class="text-center mb-8 sm:mb-12">
+			<h2 class="text-5xl sm:text-[52px] font-display font-bold mb-11 sm:mb-[66px] max-w-xs sm:max-w-none mx-auto">
 				How's the sky looking today?
 			</h2>
 			
