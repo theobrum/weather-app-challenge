@@ -60,7 +60,7 @@
 			<div class="flex justify-center sm:justify-end">
 				<div class="flex items-center gap-4 sm:gap-6">
 					<img src={weatherIcon} alt="" class="w-20 sm:w-24 h-20 sm:h-auto" />
-					<div class="text-5xl sm:text-8xl font-display font-bold">
+					<div class="text-5xl sm:text-8xl font-display">
 						{Math.round(current.temperature)}{tempSymbol}
 					</div>
 				</div>

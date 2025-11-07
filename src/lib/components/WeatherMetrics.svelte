@@ -19,21 +19,21 @@
 <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
 	<div class="bg-neutral-700 rounded-xl p-6">
 		<p class="text-neutral-300 text-sm mb-2">Feels Like</p>
-		<p class="text-2xl font-semibold">{formatTemperature(current.apparentTemperature)}</p>
+		<p class="text-3xl font-display-light">{formatTemperature(current.apparentTemperature)}</p>
 	</div>
 	
 	<div class="bg-neutral-700 rounded-xl p-6">
 		<p class="text-neutral-300 text-sm mb-2">Humidity</p>
-		<p class="text-2xl font-semibold">{formatHumidity(current.humidity)}</p>
+		<p class="text-3xl font-display-light">{formatHumidity(current.humidity)}</p>
 	</div>
 	
 	<div class="bg-neutral-700 rounded-xl p-6">
 		<p class="text-neutral-300 text-sm mb-2">Wind</p>
-		<p class="text-2xl font-semibold">{formatWindSpeed(current.windSpeed, windUnit)}</p>
+		<p class="text-3xl font-display-light">{formatWindSpeed(current.windSpeed, windUnit)}</p>
 	</div>
 	
 	<div class="bg-neutral-700 rounded-xl p-6">
 		<p class="text-neutral-300 text-sm mb-2">Precipitation</p>
-		<p class="text-2xl font-semibold">{formatPrecipitation(current.precipitation, precipUnit)}</p>
+		<p class="text-3xl font-display-light">{formatPrecipitation(current.precipitation, precipUnit)}</p>
 	</div>
 </div>
