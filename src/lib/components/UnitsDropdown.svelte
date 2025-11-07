@@ -100,13 +100,27 @@
 		<div 
 			class="absolute right-0 mt-2 w-64 bg-neutral-700 rounded-lg shadow-xl z-50 overflow-hidden"
 		>
-			<button
-				onclick={switchToImperial}
-				class="w-full px-4 py-3 text-left hover:bg-neutral-600 transition-colors border-b border-neutral-600
-					   focus:outline-none focus:bg-neutral-600"
-			>
-				Switch to Imperial
-			</button>
+			<!-- Mostrar "Switch to Metric" solo si NO está en métrico -->
+			{#if !isMetric}
+				<button
+					onclick={switchToMetric}
+					class="w-full px-4 py-3 text-left hover:bg-neutral-600 transition-colors border-b border-neutral-600
+						focus:outline-none focus:bg-neutral-600"
+				>
+					Switch to Metric
+				</button>
+			{/if}
+			
+			<!-- Mostrar "Switch to Imperial" solo si NO está en imperial -->
+			{#if !isImperial}
+				<button
+					onclick={switchToImperial}
+					class="w-full px-4 py-3 text-left hover:bg-neutral-600 transition-colors border-b border-neutral-600
+						focus:outline-none focus:bg-neutral-600"
+				>
+					Switch to Imperial
+				</button>
+			{/if}
 			
 			<div class="p-4 space-y-4">
 				<div>

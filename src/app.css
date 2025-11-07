@@ -1,6 +1,37 @@
 @import 'tailwindcss';
 
-@theme {
+@font-face {
+	font-family: 'DM Sans';
+	src: url('/fonts/DMSans-VariableFont_opsz_wght.ttf') format('truetype');
+	font-weight: 100 900;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Bricolage Grotesque';
+	src: url('/fonts/BricolageGrotesque-VariableFont_opsz_wdth_wght.ttf') format('truetype');
+	font-weight: 100 900;
+	font-display: swap;
+}
+
+html,
+body {
+	font-family: 'DM Sans', sans-serif;
+	background-color: hsl(243 96% 9%);
+	color: hsl(0 0% 100%);
+}
+
+.font-display {
+	font-family: 'Bricolage Grotesque', sans-serif !important;
+	font-weight: 600;
+}
+
+.font-display-light {
+	font-family: 'Bricolage Grotesque', sans-serif !important;
+	font-weight: 400;
+}
+
+:root {
 	--color-neutral-900: hsl(243 96% 9%);
 	--color-neutral-800: hsl(243 27% 20%);
 	--color-neutral-700: hsl(243 23% 24%);

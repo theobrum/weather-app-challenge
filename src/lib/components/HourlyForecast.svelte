@@ -87,7 +87,8 @@
 	});
 	
 	let selectedDayHours = $derived.by(() => {
-		return dayGroups[selectedDayIndex]?.hours || [];
+		const hours = dayGroups[selectedDayIndex]?.hours || [];
+		return hours.slice(0, 8);
 	});
 	
 	let selectedDayLabel = $derived.by(() => {
@@ -97,15 +98,15 @@
 
 <svelte:window onclick={handleWindowClick} />
 
-<div class="bg-neutral-800 rounded-xl p-6">
-	<div class="flex items-center justify-between mb-6">
+<div class="bg-neutral-800 rounded-xl p-6 flex flex-col h-full w-full">
+	<div class="flex items-center justify-between gap-4 mb-6">
 		<h3 class="text-xl font-semibold">Hourly forecast</h3>
 		
 		<div class="relative" bind:this={dropdownRef}>
 			<button
 				onclick={toggleDropdown}
 				class="flex items-center gap-2 px-4 py-2 bg-neutral-700 hover:bg-neutral-600 
-					   rounded-lg transition-colors"
+					   rounded-lg transition-colors whitespace-nowrap"
 			>
 				<span>{selectedDayLabel}</span>
 				<img 
@@ -133,12 +134,12 @@
 		</div>
 	</div>
 	
-	<div class="space-y-3 max-h-[600px] overflow-y-auto">
+	<div class="space-y-2">
 		{#each selectedDayHours as hour}
-			<div class="flex items-center justify-between py-3 px-4 bg-neutral-700 rounded-lg">
-				<span class="text-neutral-300 w-16">{hour.time}</span>
-				<img src={hour.icon} alt="" class="w-10 h-10" />
-				<span class="font-semibold text-lg w-16 text-right">{hour.temp}°</span>
+			<div class="flex items-center gap-4 py-2 px-4 bg-neutral-700 rounded-lg">
+				<img src={hour.icon} alt="" class="w-10 h-10 shrink-0" />
+				<span class="text-neutral-0 flex-1">{hour.time}</span>
+				<span class="text-neutral-300 text-lg">{hour.temp}°</span>
 			</div>
 		{/each}
 	</div>

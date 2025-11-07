@@ -29,8 +29,8 @@ export function formatWindSpeed(speed: number, unit: string): string {
 	return `${Math.round(speed)} ${unit}`;
 }
 
-export function formatPrecipitation(amount: number, unit: string): string {
-	return `${amount.toFixed(1)} ${unit}`;
+export function formatPrecipitation(value: number, unit: string): string {
+	return `${Math.round(value)} ${unit}`;
 }
 
 export function formatHumidity(humidity: number): string {
