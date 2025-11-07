@@ -138,8 +138,8 @@
 		{#each selectedDayHours as hour}
 			<div class="flex items-center gap-4 py-2 px-4 bg-neutral-700 rounded-lg">
 				<img src={hour.icon} alt="" class="w-10 h-10 shrink-0" />
-				<span class="text-neutral-300 flex-1">{hour.time}</span>
-				<span class="font-semibold text-lg">{hour.temp}°</span>
+				<span class="text-neutral-0 flex-1">{hour.time}</span>
+				<span class="text-neutral-300 text-lg">{hour.temp}°</span>
 			</div>
 		{/each}
 	</div>
