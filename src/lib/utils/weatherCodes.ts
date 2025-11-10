@@ -34,6 +34,7 @@ export const weatherCodes: Record<number, WeatherInfo> = {
 	99: { description: 'Thunderstorm with heavy hail', icon: 'cloud-lightning' }
 };
 
+// IVAN: por qué no se usa esta función?
 export function getWeatherInfo(code: number): WeatherInfo {
 	return weatherCodes[code] || { description: 'Unknown', icon: 'help-circle' };
 }

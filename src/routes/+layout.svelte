@@ -15,4 +15,5 @@
 	setQueryClientContext(queryClient);
 </script>
 
+<!-- slot es de la api vieja de Svelte, ahora se usa @children() -->
 <slot />

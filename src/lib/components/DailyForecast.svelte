@@ -16,6 +16,7 @@
 		daily: DailyForecastType;
 	} = $props();
 	
+	// IVAN: esta función se repite acá y en CurrentWeather? Capaz se puede mover a un archivo aparte
 	function getWeatherIcon(code: number): string {
 		if (code === 0 || code === 1) return iconSunny;
 		if (code === 2) return iconPartlyCloudy;

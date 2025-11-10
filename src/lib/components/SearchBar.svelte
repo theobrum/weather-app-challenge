@@ -13,6 +13,8 @@
 	
 	function handleSubmit(e: SubmitEvent) {
 		e.preventDefault();
+		// IVAN: para evitar repetir código capaz:
+		// const parsedValue = value.trim();
 		if (value.trim()) {
 			onSearch(value.trim());
 		}

@@ -1,7 +1,8 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { goto } from '$app/navigation';
-	import { page } from '$app/stores';
+	import { page } from '$app/stores'; // IVAN: esto está deprecado: Use page from $app/state instead
+	import { page as pageNew } from '$app/state'; // IVAN: esto está deprecado: Use page from $app/state instead
 	import { browser } from '$app/environment';
 	import { createQuery } from '@tanstack/svelte-query';
 	import Header from '$lib/components/Header.svelte';
@@ -15,14 +16,14 @@
 	import NoResults from '$lib/components/NoResults.svelte';
 	import { searchLocations } from '$lib/services/geocoding';
 	import { getWeatherData } from '$lib/services/weather';
-	import type { UnitSettings } from '$lib/types/weather';
+	import type { Location, UnitSettings } from '$lib/types/weather';
 	import { debounce } from '$lib/utils/debounce';
 	
 	let searchQuery = $state('');
 	let units = $state<UnitSettings>({
-		temperature: 'celsius',
-		windSpeed: 'kmh',
-		precipitation: 'mm'
+		temperature: 'celsius', // IVAN: capaz conviene usar un enum
+		windSpeed: 'kmh', // IVAN: capaz conviene usar un enum
+		precipitation: 'mm' // IVAN: capaz conviene usar un enum
 	});
 	let selectedLocation = $state<{ lat: number; lon: number; name: string } | null>(null);
 	let isGettingLocation = $state(false);
@@ -63,7 +64,7 @@
 	function updateUrl() {
 		if (!browser) return;
 		
-		const url = new URL(window.location.href);
+		const url = new URL(window.location.href); // usar page de app/states en vez de agarrar directo de la url - page.url.searchParams...
 		
 		url.searchParams.set('temp', units.temperature);
 		url.searchParams.set('wind', units.windSpeed);
@@ -110,6 +111,7 @@
 		}
 	});
 	
+	// Llevar queries a archivo aparte
 	const locationQuery = createQuery(() => ({
 		queryKey: ['locations', searchQuery],
 		queryFn: () => searchLocations(searchQuery),
@@ -150,7 +152,8 @@
 		debouncedSearch(query);
 	}
 	
-	function handleLocationSelect(location: any) {
+	// En lo posible evitar any - usar Location
+	function handleLocationSelect(location: Location) {
 		selectedLocation = {
 			lat: location.latitude,
 			lon: location.longitude,

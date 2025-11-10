@@ -8,6 +8,7 @@
 		precipitationUnit
 	}: {
 		current: CurrentWeather;
+		// IVAN: enums
 		windSpeedUnit: 'kmh' | 'mph';
 		precipitationUnit: 'mm' | 'inch';
 	} = $props();

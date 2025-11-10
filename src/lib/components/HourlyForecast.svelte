@@ -21,6 +21,7 @@
 	let isDropdownOpen = $state(false);
 	let dropdownRef: HTMLDivElement;
 	
+	// IVAN: función repetida
 	function getWeatherIcon(code: number): string {
 		if (code === 0 || code === 1) return iconSunny;
 		if (code === 2) return iconPartlyCloudy;
